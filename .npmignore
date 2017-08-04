@@ -1,0 +1,15 @@
+.vscode/
+
+node_modules/
+
+build/
+coverage/
+src/
+spec/
+
+.gitattributes
+.gitignore
+.npmignore
+
+karma.conf.js
+.travis.yml

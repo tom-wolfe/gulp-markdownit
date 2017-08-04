@@ -1,0 +1,47 @@
+{
+  "name": "gulp-markdownit",
+  "version": "0.1.0",
+  "description": "A gulp plug-in for the markdown-it library.",
+  "main": "./src/index.js",
+  "scripts": {
+    "lint": "standard --env mocha --fix --verbose | snazzy",
+    "test": "./node_modules/.bin/mocha ./spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trwolfe13/gulp-markdownit.git"
+  },
+  "keywords": [
+    "markdown",
+    "gulp",
+    "parser",
+    "mardown-it",
+    "task",
+    "markdown-it-plugin",
+    "gulpplugin"
+  ],
+  "author": "Tom Wolfe <trwolfe13@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trwolfe13/gulp-markdownit/issues"
+  },
+  "homepage": "https://github.com/trwolfe13/gulp-markdownit#readme",
+  "devDependencies": {
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "mocha": "^3.5.0",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0",
+    "markdown-it": "*",
+    "through2": "^2.0.3"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
+  }
+}
