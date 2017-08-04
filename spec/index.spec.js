@@ -21,11 +21,61 @@ describe('gulp-markdownit', () => {
     })
   })
   it('should allow a plugin to be passed as a single string.', function (done) {
-    const task = markdownIt({plugins: 'brewdown'})
+    const task = markdownIt({ plugins: 'brewdown' })
     task.write(createFile(Buffer.from('test')))
     task.once('data', function (file) {
       assert(file.isBuffer())
       assert.equal(file.contents.toString(), '<div class="page a4">\n<p>test</p>\n</div>\n')
+      done()
+    })
+  })
+  it('should allow a plugin to be passed as a single function.', function (done) {
+    const task = markdownIt({ plugins: require('brewdown') })
+    task.write(createFile(Buffer.from('test')))
+    task.once('data', function (file) {
+      assert(file.isBuffer())
+      assert.equal(file.contents.toString(), '<div class="page a4">\n<p>test</p>\n</div>\n')
+      done()
+    })
+  })
+  it('should allow a plugin to be passed as a string in an array.', function (done) {
+    const task = markdownIt({ plugins: ['brewdown'] })
+    task.write(createFile(Buffer.from('test')))
+    task.once('data', function (file) {
+      assert(file.isBuffer())
+      assert.equal(file.contents.toString(), '<div class="page a4">\n<p>test</p>\n</div>\n')
+      done()
+    })
+  })
+  it('should allow a plugin to be passed as a function in an array.', function (done) {
+    const task = markdownIt({ plugins: [require('brewdown')] })
+    task.write(createFile(Buffer.from('test')))
+    task.once('data', function (file) {
+      assert(file.isBuffer())
+      assert.equal(file.contents.toString(), '<div class="page a4">\n<p>test</p>\n</div>\n')
+      done()
+    })
+  })
+  it('should allow options to be passed to an individual function.', function (done) {
+    const task = markdownIt({
+      plugins: {
+        plugin: require('brewdown'),
+        options: { style: 'two-col' }
+      }
+    })
+    task.write(createFile(Buffer.from('test')))
+    task.once('data', function (file) {
+      assert(file.isBuffer())
+      assert.equal(file.contents.toString(), '<div class="page a4 two-col">\n<p>test</p>\n</div>\n')
+      done()
+    })
+  })
+  it('should pass options on to plugins.', function (done) {
+    const task = markdownIt({ plugins: 'brewdown', options: { style: 'two-col' } })
+    task.write(createFile(Buffer.from('test')))
+    task.once('data', function (file) {
+      assert(file.isBuffer())
+      assert.equal(file.contents.toString(), '<div class="page a4 two-col">\n<p>test</p>\n</div>\n')
       done()
     })
   })
