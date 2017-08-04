@@ -1,4 +1,4 @@
-# gulp-markdownit
+# gulp-markdownit [![NPM version](https://img.shields.io/npm/v/gulp-markdownit.svg)](https://npmjs.org/package/gulp-markdownit)
 [![Build Status](https://travis-ci.org/trwolfe13/gulp-markdownit.svg?branch=master)](https://travis-ci.org/trwolfe13/gulp-markdownit) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 A plug-in for [gulp](https://github.com/gulpjs/gulp) that adds pipe support for the [markdown-it](https://github.com/markdown-it/markdown-it) library.
