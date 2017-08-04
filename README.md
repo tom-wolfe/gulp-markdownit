@@ -5,11 +5,11 @@ A plug-in for [gulp](https://github.com/gulpjs/gulp) that adds pipe support for 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for use, or for development and testing purposes.
 
 ### Installing
 
-The package can be installed using the command below. It uses a peer dependency for the markdown-it library, so it will use whatever version you have installed already.
+The package can be installed using the command below. It uses a peer dependency for the `markdown-it` library, so **it will use whatever version you have installed already.**
 
 ```
 npm install gulp-markdownit --save
@@ -17,15 +17,88 @@ npm install gulp-markdownit --save
 
 ### Usage
 
+Here are some instructions on how to use the task in your projects.
+
+#### Basic Usage
+
+The basic usage couldn't be any simpler. Just pipe your markdown into the function and watch as HTML comes out the other end!
+
 ```javascript
-const Markdown = require('markdown-it')
-const brewdown = require('brewdown')
+const markdown = require('gulp-markdownit')
 
-const md = new Markdown().use(brewdown)
-const html = md.render('# This is a Heading')
-
-console.log(html)
+gulp.task('markdown', () => {
+  return gulp.src("*.md")
+    .pipe(markdown())
+})
 ```
+
+#### Configuring
+
+The markdown-it library supports a lot of options, and often plugins offer up their own configuration options too. These can be supplied as a config object when configuring the pipe. Options that get passed to the markdown-it instance need to be declared as part of an `options` attribute on the config object, as per the example below.
+
+This object is passed to the markdown-it instance (copied through `Object.assign`) so as new properties are added to the markdown-it library, this library should stay up to date, provided you update your markdown-it dependency. These options are also passed on to any plugins that you enable.
+
+```javascript
+const markdown = require('gulp-markdownit')
+
+gulp.task('markdown', () => {
+  const config = {
+    options: {
+      html: true,
+      linkify: true,
+      typographer: true
+    }
+  }
+  return gulp.src("*.md")
+    .pipe(markdown(config))
+})
+```
+
+#### Loading Plugins
+
+Plugins are one of the things that make the markdown-it library great, so it's only right that they should be as flexible as possible. When adding plugins, you can either provide a single plugin by itself, or pass multiple in an array.
+
+The plugin itself can either be the plugin function object, the name of the module as a string which will be passed to `require`, or an object of the format: `{ plugin: object, options: object }`.
+
+The reason for the last type is just in case two plugins provide options of the same name.
+
+```javascript
+const markdown = require('gulp-markdownit')
+const container = require('markdown-it-container')
+
+gulp.task('markdown', () => {
+  const config = {
+    plugins: container
+  }
+  return gulp.src("*.md")
+    .pipe(markdown(config))
+})
+```
+
+### Configuration
+Below is a list of all the available configuration options. 
+#### disable
+Type: `string|string[]`
+
+This argument is passed to the [`MarkdownIt.disable`](https://markdown-it.github.io/markdown-it/#MarkdownIt.disable) method and allows you to disable the rules with the given names.
+
+#### enable
+Type: `string|string[]`
+
+This argument is passed to the [`MarkdownIt.enable`](https://markdown-it.github.io/markdown-it/#MarkdownIt.enable) method and allows you to enable the rules with the given names.
+
+#### options
+Type: `object`
+
+This object is passed into the markdown-it constructor on instantiation. Refer to the [markdown-it documentation](https://markdown-it.github.io/markdown-it/#MarkdownIt.new) for the full list of options.
+#### plugins
+Type: `[function|string|{plugin: function, options: object}]`
+
+
+#### preset
+Type: `string` default: `'default'`
+
+Currently accepts `commonmark`, `default` and `zero`. See [MarkdownIt.new](https://markdown-it.github.io/markdown-it/#MarkdownIt.new) for more information.
 
 ## Installing Dependencies
 
@@ -33,16 +106,10 @@ Installing the dependencies is done using a standard ```npm install```.
 
 ## Running the Tests
 
-Tests are written (and run) using [Jasmine](https://jasmine.github.io/). The following command will run the tests.
+Tests are written using Mocha. The following command will run the tests.
 
 ```
 npm test
-```
-
-## Building the project
-
-```
-npm run build
 ```
 
 ## Versioning
