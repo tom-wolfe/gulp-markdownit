@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/trwolfe13/gulp-markdownit#readme",
   "devDependencies": {
+    "brewdown": "^1.1.0",
     "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
     "mocha": "^3.5.0",

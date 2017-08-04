@@ -20,6 +20,15 @@ describe('gulp-markdownit', () => {
       done()
     })
   })
+  it('should allow a plugin to be passed as a single string.', function (done) {
+    const task = markdownIt({plugins: 'brewdown'})
+    task.write(createFile(Buffer.from('test')))
+    task.once('data', function (file) {
+      assert(file.isBuffer())
+      assert.equal(file.contents.toString(), '<div class="page a4">\n<p>test</p>\n</div>\n')
+      done()
+    })
+  })
   it('should pass over an empty file.', () => {
     const task = markdownIt()
     task.write(createFile(null))
