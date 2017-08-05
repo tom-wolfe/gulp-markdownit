@@ -1,4 +1,5 @@
 # gulp-markdownit [![NPM version](https://img.shields.io/npm/v/gulp-markdownit.svg)](https://npmjs.org/package/gulp-markdownit)
+
 [![Build Status](https://travis-ci.org/trwolfe13/gulp-markdownit.svg?branch=master)](https://travis-ci.org/trwolfe13/gulp-markdownit) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 A plug-in for [gulp](https://github.com/gulpjs/gulp) that adds pipe support for the [markdown-it](https://github.com/markdown-it/markdown-it) library.
@@ -11,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 The package can be installed using the command below. It uses a peer dependency for the `markdown-it` library, so **it will use whatever version you have installed already.**
 
-```
+```batchfile
 npm install gulp-markdownit --save
 ```
 
@@ -76,26 +77,33 @@ gulp.task('markdown', () => {
 ```
 
 ### Configuration
-Below is a list of all the available configuration options. 
+
+Below is a list of all the available configuration options.
+
 #### disable
+
 Type: `string|string[]`
 
 This argument is passed to the [`MarkdownIt.disable`](https://markdown-it.github.io/markdown-it/#MarkdownIt.disable) method and allows you to disable the rules with the given names.
 
 #### enable
+
 Type: `string|string[]`
 
 This argument is passed to the [`MarkdownIt.enable`](https://markdown-it.github.io/markdown-it/#MarkdownIt.enable) method and allows you to enable the rules with the given names.
 
 #### options
+
 Type: `object`
 
 This object is passed into the markdown-it constructor on instantiation. Refer to the [markdown-it documentation](https://markdown-it.github.io/markdown-it/#MarkdownIt.new) for the full list of options.
+
 #### plugins
+
 Type: `[function|string|{plugin: function, options: object}]`
 
-
 #### preset
+
 Type: `string` default: `'default'`
 
 Currently accepts `commonmark`, `default` and `zero`. See [MarkdownIt.new](https://markdown-it.github.io/markdown-it/#MarkdownIt.new) for more information.
@@ -108,13 +116,13 @@ Installing the dependencies is done using a standard ```npm install```.
 
 Tests are written using Mocha. The following command will run the tests.
 
-```
+```batchfile
 npm test
 ```
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/trwolfe13/gulp-markdownit/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/trwolfe13/gulp-markdownit/tags).
 
 ## Authors
 
