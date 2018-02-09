@@ -1,4 +1,4 @@
-const gutil = require('gulp-util')
+const PluginError = require('plugin-error')
 const through = require('through2')
 
 const PLUGIN_NAME = 'gulp-markdownit'
@@ -42,14 +42,14 @@ const gulpMarkdownIt = (options) => {
   return through.obj(function (file, encoding, cb) {
     if (file.isNull() || file.content === null) { return cb(null, file) }
     if (file.isStream()) {
-      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streaming is not supported'), null)
+      return cb(new PluginError(PLUGIN_NAME, 'Streaming is not supported'), null)
     }
     try {
       file.contents = Buffer.from(md.render(file.contents.toString()), encoding)
-      file.path = gutil.replaceExtension(file.path, '.html')
+      file.extname = '.html'
       return cb(null, file)
     } catch (err) {
-      return cb(new gutil.PluginError(PLUGIN_NAME, err, {
+      return cb(new PluginError(PLUGIN_NAME, err, {
         fileName: file.path,
         showstack: true
       }), null)
