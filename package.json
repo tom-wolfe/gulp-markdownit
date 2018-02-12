@@ -35,8 +35,8 @@
     "standard": "^10.0.2"
   },
   "dependencies": {
-    "gulp-util": "^3.0",
     "markdown-it": "*",
+    "plugin-error": "^1.0",
     "through2": "^2.0.3"
   },
   "standard": {
