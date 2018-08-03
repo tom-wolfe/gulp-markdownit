@@ -9,7 +9,7 @@ const useMarkdownItPlugin = (md, plugin) => {
   } else if (typeof plugin === 'function') {
     md.use(plugin, md.options)
   } else if (Array.isArray(plugin)) {
-    md.use(plugin[0], plugin[1])
+    md.use(plugin[0], ...plugin.slice(1))
   } else {
     md.use(plugin.plugin, plugin.options)
   }
