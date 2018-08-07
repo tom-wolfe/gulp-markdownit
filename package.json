@@ -1,6 +1,6 @@
 {
   "name": "gulp-markdownit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A gulp plug-in for the markdown-it library.",
   "main": "./src/index.js",
   "scripts": {
